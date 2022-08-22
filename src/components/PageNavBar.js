@@ -1,25 +1,53 @@
 
 import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 // import { useNavigate } from 'react'
+
+import SearchFunctions from './helpers/search.js'
+import { getSearch } from './helpers/search.js'
 
 // Import React Bootstrap Components
 import NavBar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-const PageNavBar = () => {
 
+const PageNavBar = () => {
+  const genreDummy = ['kids', 'action', 'Adventure', 'sci-fi', 'fantasy', 'animals']
+  const [movies, setMovies] = useState([])
+  const [filteredMovies, setFilteredMovies] = useState([])
+  const [error, setError] = useState([])
   const navigate = useNavigate()
+
   const handleClick = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
+    event.preventDefault()
+    getSearch(event.target.value)
+
     if (event.target.value !== ''){
       navigate('/search')
     } else {
-      navigate('/')
+      navigate(-1)
     }
-   
-
   }
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:4000/movies")
+        setMovies(data)
+        console.log(data)
+      } catch (error) {
+        setError(error)
+        console.log(error)
+      }
+    }
+    getData()
+  }, [])
+
+
+
 
   return (
 
