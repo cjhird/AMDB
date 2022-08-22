@@ -26,7 +26,7 @@ const App = () => {
       try {
         const { data } = await axios.get("http://localhost:4000/movies")
         setMovies(data)
-        getMovies(data)
+        // getMovies(data)
         console.log(data)
       } catch (error) {
         setError(error)

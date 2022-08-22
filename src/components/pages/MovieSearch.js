@@ -42,6 +42,9 @@ const MovieSearch = () => {
   return (
     <Container className='search-wrapper'>
       <h1>MovieSearch</h1>
+      <div className='search-container text-md-center text-end my-md-0 my-3'>
+          <input type="text" className="seach" placeholder="Search..." onKeyUp={handleClick}></input>
+        </div>
       <div>
         {genreDummy.map(genre => {
           return <button name="filtered" onClick={handleClick} value={genre}>{genre}  | </button>

@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { useNavigate } from 'react'
 
-import SearchFunctions from './helpers/search.js'
-import { getSearch } from './helpers/search.js'
+// import SearchFunctions from './helpers/search.js'
+// import { getSearch, getTags, getMovies } from './helpers/search.js'
 
 // Import React Bootstrap Components
 import NavBar from 'react-bootstrap/Navbar'
@@ -20,32 +20,17 @@ const PageNavBar = () => {
   const [error, setError] = useState([])
   const navigate = useNavigate()
 
-  const handleClick = (event) => {
-    // console.log(event.target.value)
-    event.preventDefault()
-    getSearch(event.target.value)
+  // const handleClick = (event) => {
+  //   // console.log(event.target.value)
+  //   event.preventDefault()
+  //   getSearch(event.target.value)
 
-    if (event.target.value !== ''){
-      navigate('/search')
-    } else {
-      navigate(-1)
-    }
-  }
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:4000/movies")
-        setMovies(data)
-        console.log(data)
-      } catch (error) {
-        setError(error)
-        console.log(error)
-      }
-    }
-    getData()
-  }, [])
-
+  //   if (event.target.value !== ''){
+  //     navigate('/search')
+  //   } else {
+  //     navigate(-1)
+  //   }
+  // }
 
 
 
@@ -59,7 +44,7 @@ const PageNavBar = () => {
         <NavBar.Toggle aria-controls="basic-navbar-nav"></NavBar.Toggle>
         <NavBar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <div className='search-container text-md-center text-end my-md-0 my-3'>
-          <input type="text" className="seach" placeholder="Search..." onKeyUp={handleClick}></input>
+          {/* <input type="text" className="seach" placeholder="Search..." onKeyUp={handleClick}></input> */}
         </div>
 
             <Nav.Link as={Link} to="/register" className=''><span className="underline">Register</span></Nav.Link>
@@ -75,3 +60,31 @@ const PageNavBar = () => {
 }
 
 export default PageNavBar
+
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const { data } = await axios.get("http://localhost:4000/movies")
+  //       setMovies(data)
+  //       console.log(data)
+  //     } catch (error) {
+  //       setError(error)
+  //       console.log(error)
+  //     }
+  //   }
+  //   getData()
+  // }, [])
+
+
+  // useEffect(() => {
+  //   // This useEffect will trigger when the countries are loaded and when a user updates one of the filters
+  //   // So if search or region dropdown is updated, this will trigger and update the filteredCountries state
+  //   const regexSearch = new RegExp(movies.search, 'i')
+  //   const filteredArray = movies.filter(movie => {
+  //     return regexSearch.test(movies.name)
+  //   })
+  //   console.log(filteredArray)
+  //   getMovies(filteredArray)
+
+  // }, [movies])
