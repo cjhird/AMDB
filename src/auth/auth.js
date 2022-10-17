@@ -1,6 +1,5 @@
 import { Buffer } from 'buffer'
 
-
 // Save token to local storage
 export const setToken = (token) => {
   window.localStorage.setItem('rcf-ani-token', token)
@@ -10,7 +9,6 @@ export const setToken = (token) => {
 // Call token from storage
 export const getToken = () => {
   return window.localStorage.getItem('rcf-ani-token')
-  console.log('get token')
 }
 
 export const getPayload = () => {
@@ -25,12 +23,10 @@ export const userIsAuthenticated = () => {
   const payload = getPayload()
   if (!payload) return
   const currentTime = Math.round(Date.now() / 1000)
-  // console.log('Expiry date', payload.exp)
   return currentTime < payload.exp
-
 }
 
-// ! GET LOGIN TEXT 
+// ! GET LOGIN TEXT
 let loginText = ''
 export const getText = (text) => {
   loginText = text
@@ -42,7 +38,5 @@ export const getText = (text) => {
 export const loginTextDisplay = () => {
   const text = loginText
   console.log(text)
-  return (
-    <span className='nav-logged-in'>{text}</span>
-  )
+  return <span className="nav-logged-in">{text}</span>
 }
